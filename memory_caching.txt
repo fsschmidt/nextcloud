@@ -1,4 +1,5 @@
 https://docs.nextcloud.com/server/latest/admin_manual/configuration_server/caching_configuration.html
+https://www.tecmint.com/install-opcache-in-centos-7/
 
 package: php-pecl-apcu php-opcache
 
