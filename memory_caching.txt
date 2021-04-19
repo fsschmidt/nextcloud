@@ -1,12 +1,24 @@
 https://docs.nextcloud.com/server/latest/admin_manual/configuration_server/caching_configuration.html
 
-package: php-pecl-apcu
+package: php-pecl-apcu php-opcache
 
 
-php.ini: apc.enable_cli = 1
+php.ini: 
+
+apc.enable_cli = 1
 
 After restarting your Web serve
 
+config.php: 
 
-config.php: 'memcache.local' => '\OC\Memcache\APCu',
+'memcache.local' => '\OC\Memcache\APCu',
+
+/etc/php.d/10-opcache.ini:
+
+opcache.enable=1
+opcache.interned_strings_buffer=8
+opcache.max_accelerated_files=10000
+opcache.memory_consumption=128
+opcache.save_comments=1
+opcache.revalidate_freq=1
 
