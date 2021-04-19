@@ -1,0 +1,12 @@
+https://docs.nextcloud.com/server/latest/admin_manual/configuration_server/caching_configuration.html
+
+package: php-pecl-apcu
+
+
+php.ini: apc.enable_cli = 1
+
+After restarting your Web serve
+
+
+config.php: 'memcache.local' => '\OC\Memcache\APCu',
+
