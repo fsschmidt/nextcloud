@@ -8,7 +8,7 @@ php.ini:
 
 apc.enable_cli = 1
 
-After restarting your Web serve
+After restarting your Web server
 
 config.php: 
 
