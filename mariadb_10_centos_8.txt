@@ -2,6 +2,6 @@ curl -LsS -O https://downloads.mariadb.com/MariaDB/mariadb_repo_setup
 bash mariadb_repo_setup --mariadb-server-version=10.6
 dnf install boost-program-options -y
 dnf module reset mariadb -y
-yum install MariaDB-server MariaDB-client MariaDB-backup
+dnf install MariaDB-server MariaDB-client MariaDB-backup
 systemctl enable --now mariadb
 mariadb-secure-installation
