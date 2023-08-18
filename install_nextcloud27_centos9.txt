@@ -16,7 +16,7 @@ mysql -u root -p
 --
 
 cd /var/www/html/
-wget https://download.nextcloud.com/server/releases/latest-22.zip
+wget https://download.nextcloud.com/server/releases/latest-27.zip
 unzip latest-22.zip
 mkdir /var/www/html/nextcloud/data
 mount /dev/mapper/nextcloud-data /var/www/html/nextcloud/data
