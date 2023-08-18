@@ -23,21 +23,13 @@ mkdir /var/www/html/nextcloud/data
 chown apache:apache -R /var/www/html/nextcloud
 
 vim /etc/httpd/conf.d/nextcloud.conf
-
-
 --
 
 systemctl enable --now httpd
 mysql -u root -p
-vim /etc/my.cnf
-
---
-
 cd /etc/my.cnf.d/
-
---
-
 vim server.cnf
+--
 systemctl restart mariadb
 yum install php74-php-intl.x86_64
 yum install php74-php-gmp.x86_64
