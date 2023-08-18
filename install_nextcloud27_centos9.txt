@@ -1,22 +1,9 @@
-
-yum install epel-release
-yum install htop
-hostnamectl set-hostname drive.$DOMAIN.$TD
-timedatectl set-timezone America/Sao_Paulo
-fdisk /dev/vdb
-fdisk /dev/vdc
-yum install lvm2
-pvcreate /dev/vdb1 /dev/vdc1
-vgcreate nextcloud
-vgcreate nextcloud /dev/vdb1 /dev/vdc1
-lvcreate -l 100%FREE -n data nextcloud
-mkfs.xfs /dev/mapper/nextcloud-data
-yum -y install epel-release yum-utils
-yum -y install http://rpms.remirepo.net/enterprise/remi-release-8.rpm
-yum-config-manager --disable remi-php54
-yum-config-manager --enable remi-php74
-yum install php74-php php74-php-cli php74-php-mysqlnd php74-php-zip php74-php-devel php74-php-gd php74-php-mcrypt php74-php-mbstring php74-php-curl php74-php-xml php74-php-pear php74-php-bcmath php74-php-json php74-php-pdo php74-php-pecl-apcu php74-php-pecl-apcu-devel php74-php-ldap
-yum install vim httpd mod_ssl wget unzip
+dnf install vim httpd mod_ssl wget unzip
+dnf install https://dl.fedoraproject.org/pub/epel/epel-release-latest-9.noarch.rpm
+dnf install https://rpms.remirepo.net/enterprise/remi-release-9.rpm
+dnf module install php:remi-8.2
+dnf install php php-cli php-mysqlnd php-zip php-devel php-gd php-mcrypt php-mbstring php-curl php-xml php-pear php-bcmath php-json php-pdo php-pecl-apcu php-pecl-apcu-devel php-ldap
+dnf install vim httpd mod_ssl wget unzip
 curl -LsS -O https://downloads.mariadb.com/MariaDB/mariadb_repo_setup
 bash mariadb_repo_setup --mariadb-server-version=10.6
 dnf install boost-program-options -y
