@@ -1,0 +1,54 @@
+dnf install vim httpd mod_ssl wget unzip
+dnf install https://dl.fedoraproject.org/pub/epel/epel-release-latest-9.noarch.rpm
+dnf install https://rpms.remirepo.net/enterprise/remi-release-9.rpm
+dnf module install php:remi-8.2
+dnf install php php-cli php-mysqlnd php-zip php-devel php-gd php-mcrypt php-mbstring php-curl php-xml php-pear php-bcmath php-json php-pdo php-pecl-apcu php-pecl-apcu-devel php-ldap
+dnf install vim httpd mod_ssl wget unzip
+curl -LsS -O https://downloads.mariadb.com/MariaDB/mariadb_repo_setup
+bash mariadb_repo_setup --mariadb-server-version=10.6
+dnf install boost-program-options -y
+dnf module reset mariadb -y
+dnf install MariaDB-server MariaDB-client MariaDB-backup
+systemctl enable --now mariadb
+mariadb-secure-installation
+mysql -u root -p
+
+--
+
+cd /var/www/html/
+wget https://download.nextcloud.com/server/releases/latest-27.zip
+unzip latest-27.zip
+rm -f latest-27.zip
+mkdir /var/www/html/nextcloud/data
+chown apache:apache -R /var/www/html/nextcloud
+
+vim /etc/httpd/conf.d/nextcloud.conf
+--
+
+systemctl enable --now httpd
+mysql -u root -p
+cd /etc/my.cnf.d/
+vim server.cnf
+--
+systemctl restart mariadb
+yum install php74-php-intl.x86_64
+yum install php74-php-gmp.x86_64
+yum install php74-php-pecl-imagi
+systemctl restart httpd
+yum install php74-php-pecl-apcu.x86_64 php74-php-opcache.x86_64
+
+vim /etc/opt/remi/php74/php.ini
+
+---
+
+
+systemctl restart httpd
+ vim 10-opcache.ini
+---
+
+cd /var/www/html/nextcloud/data/
+cd config/
+vim config.php
+
+
+systemctl restart httpd
